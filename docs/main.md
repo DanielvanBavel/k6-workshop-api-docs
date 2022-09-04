@@ -18,4 +18,4 @@ Wanneer je hulp nodig hebt vraag om hulp bij iemand met een **codecentric shirt*
 - Internet connection
 
 
-[Next:](https://danielvanbavel.github.io/k6-workshop-api-docs/step2)
+[Start workshop:](https://danielvanbavel.github.io/k6-workshop-api-docs/step2)

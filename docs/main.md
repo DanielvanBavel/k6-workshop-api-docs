@@ -2,15 +2,20 @@
 sidebar_position: 1
 ---
 
-# Expert Workshop k6 Intro
-Opzet van github pages
+# Expert Workshop k6 introductie
+In deze expert workshop K6 gaan we een performance testen uitvoeren op een Raspberry PI. Op de Raspberry PI draait een applicatie die te benaderen is via de hostnames die bij de PI's liggen. 
+Alle benodigden informatie staat op een papier per tafel.
+- Url applicatie
+- Url monitoring (Grafana)
 
-## Getting Help
-Look for someone with a **codecentric shirt**.
-Or maybe the person next to you if all codecentric people are very busy helping others.
+## Hulp nodig?
+Wanneer je hulp nodig hebt vraag om hulp bij iemand met een **codecentric shirt**. 
 
-### What you'll need
-- K6
+### Wat heb je nodig
+- K6 installed
 - GIT
-- Visual studio Code
-- an Internet connection
+- Your favorite IDE
+- Internet connection
+
+
+[Next:](https://danielvanbavel.github.io/k6-workshop-api-docs/step2)

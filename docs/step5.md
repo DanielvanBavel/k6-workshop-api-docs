@@ -2,7 +2,7 @@
 sidebar_position: 6
 ---
 
-# Opdracht 5:
+# Opdracht 5
 Implementeer nu een trend en voeg deze toe aan de thresholds.
 - Voeg de k6 metrics library toe
 - Maak een nieuwe trend aan
@@ -24,8 +24,7 @@ export default function() {
 
 
 <b>Voer het script uit via de commandline</b>
+
 ```bash
 k6 run script opdracht5.js
 ```
-
-[Ga naar opdracht 6](https://danielvanbavel.github.io/k6-workshop-api-docs/step6)

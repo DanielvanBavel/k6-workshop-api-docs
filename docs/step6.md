@@ -2,18 +2,18 @@
 sidebar_position: 7
 ---
 
-# Opdracht 6:
-Voeg een <b>.env</b> file toe aan je project om configuratie en test te scheiden van elkaar. Implementeer onderstaande variablen
+# Opdracht 6
+Voeg een <b>.env</b> file toe aan je project om configuratie en test te scheiden van elkaar. Implementeer onderstaande variabelen
 
 - URL Environment
 - Vusers
-- duration
+- Duration
 
-zorg dat de imports kloppen met de mappenstructuur
+* zorg dat de imports kloppen aan de hand van de gekozen de mappenstructuur
 
 <b>env.js</b>
-```javascript
 
+```javascript
 //Dev EnvironmentURI
 export let devEnvironment = "https://test-api.k6.io"
 
@@ -24,6 +24,7 @@ export let TG1_ITERATION=1
 ```
 
 <b>Opdracht6.js</b>
+
 ```javascript
 import * as env from 'env.js'
 
@@ -39,8 +40,7 @@ export default function() {
 
 
 <b>Voer het script uit via de commandline</b>
+
 ```bash
 k6 run script opdracht6.js
 ```
-
-[Ga naar opdracht 7](https://danielvanbavel.github.io/k6-workshop-api-docs/step7)

@@ -2,7 +2,7 @@
 sidebar_position: 5
 ---
 
-# Opdracht 4:
+# Opdracht 4
 Voeg 2 verschillende validaties toe aan de performance test door middel van thresholds
 - Wijzig de aantallen vus en duration eens om te zien of je de PI onderuit kan halen
 - Dit zou je dan ook terug moeten zien in het aantal http_req_failed
@@ -18,9 +18,9 @@ thresholds: {
 ```
 
 
+
 <b>Voer het script uit via de commandline</b>
+
 ```bash
 k6 run script opdracht4.js
 ```
-
-[Ga naar opdracht 5](https://danielvanbavel.github.io/k6-workshop-api-docs/step5)

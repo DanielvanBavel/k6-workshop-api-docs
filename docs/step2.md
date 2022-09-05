@@ -1,27 +1,18 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 ---
 
-# Intro opdracht 1
-Mocht je nog niet gecheckt hebben of K6 goed geinstalleerd is? Voer dan deze opdracht uit, anders ga door naar opdracht 2. 
+# Opdracht 2
+In opdracht 2 gaan we beginnen met het uitvoeren van een test op de Raspberry PI. Verander de URL van het vorige script naar de URL van de applicatie op de Raspberry PI.
 
-## Opdracht 1
-- Maak een nieuwe project map aan
-- Maak een nieuw bestand aan <b>opdracht1.js</b>
-- voeg het import statement toe om gebruik te maken van de k6/http library.
-- Maak een http call naar google
-- Run je script
+<i>Bekijk het grafana dashboard om te zien of er de data binnenkomt.<i>
 
 ```javascript
 import http from 'k6/http'
 
 export default function() {
-    http.get('http://www.google.nl')
+    http.get('10.0.0.242:8888/demo')
 }
 ```
 
-```bash
-k6 run script opdracht1.js
-```
-
-[Ga naar opdracht 2](https://danielvanbavel.github.io/k6-workshop-api-docs/step3)
+[Ga naar opdracht 3](https://danielvanbavel.github.io/k6-workshop-api-docs/step3)

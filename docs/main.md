@@ -8,13 +8,13 @@ Alle benodigden informatie staat op een papier per tafel.
 - Url applicatie
 - Url monitoring (Grafana)
 
-## Hulp nodig?
-Wanneer je hulp nodig hebt vraag om hulp bij iemand met een **codecentric shirt**. 
-
-### Wat heb je nodig
+## Wat heb je nodig
 - K6
 - Your favorite IDE
 - Internet connection
+
+## Hulp nodig?
+Wanneer je hulp nodig hebt vraag om hulp bij iemand met een **codecentric shirt**. 
 
 
 [Start workshop](https://danielvanbavel.github.io/k6-workshop-api-docs/step2)

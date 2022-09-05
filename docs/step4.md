@@ -1,9 +1,22 @@
 ---
-sidebar_position: 2
+sidebar_position: 5
 ---
 
-# Opdracht 3
-Oke, Opdracht 1 en 2 zijn gelukt. Nu gaan we load op de Raspberry PI zetten. Gebruik de options function in je performance script, en speel met de aantallen, vu / duration. Kijk ook naar wat deze aantallen doet op je applicatie. blijf dus goed monitoren.
+# Opdracht 4:
+Voeg 2 verschillende validaties toe aan de performance test door middel van thresholds
+- Wijzig de aantallen vus en duration eens om te zien of je de PI onderuit kan halen
+- Dit zou je dan ook terug moeten zien in het aantal http_req_failed
+- Blijf goed monitoren in grafana
 
 
-[Ga naar opdracht 4](https://danielvanbavel.github.io/k6-workshop-api-docs/step5)
+```javascript
+
+thresholds: {
+    http_req_failed: ['rate<0.01'], // http errors should be less than 1%
+    http_req_duration: ['p(95)<200'], // 95% of requests should be below 200ms
+  },
+
+```
+
+
+[Ga naar opdracht 5](https://danielvanbavel.github.io/k6-workshop-api-docs/step5)

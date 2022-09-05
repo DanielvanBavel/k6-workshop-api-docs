@@ -1,18 +1,26 @@
 ---
-sidebar_position: 2
+sidebar_position: 6
 ---
 
-# Excercise 1
-Maak een simpel script dat een request doet naar een willekeurige URL om te testen of K6 werkt.
+# Opdracht 5:
+Implementeer nu een trend en voeg deze toe aan de thresholds.
+- Voeg de k6 metrics library toe
+- Maak een nieuwe trend aan
+- Gebruik de add functie op de variable waarbij er een nieuwe trend instantie is aangemaakt.
+- Voer het script opnieuw uit.
 
 
+```javascript
 
+import { Trend } from 'k6/metrics'
 
+const WaitingTrend = new Trend('waiting_time')
 
+export default function() {
+    const response = http.get('some url');
+    WaitingTrend.add(response.timings.waiting);
+}
 
+```
 
-
-
-
-
-[Volgende opdracht:](https://danielvanbavel.github.io/k6-workshop-api-docs/step6)
+[Ga naar opdracht 6](https://danielvanbavel.github.io/k6-workshop-api-docs/step6)

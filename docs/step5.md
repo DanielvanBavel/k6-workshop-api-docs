@@ -20,7 +20,10 @@ export default function() {
     const response = http.get('some url');
     WaitingTrend.add(response.timings.waiting);
 }
+```
 
+```bash
+k6 run script opdracht5.js
 ```
 
 [Ga naar opdracht 6](https://danielvanbavel.github.io/k6-workshop-api-docs/step6)

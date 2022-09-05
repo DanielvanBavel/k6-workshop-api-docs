@@ -15,4 +15,8 @@ export default function() {
 }
 ```
 
+```bash
+k6 run script opdracht2.js
+```
+
 [Ga naar opdracht 3](https://danielvanbavel.github.io/k6-workshop-api-docs/step3)

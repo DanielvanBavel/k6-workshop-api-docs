@@ -9,6 +9,8 @@ Voeg een <b>.env</b> file toe aan je project om configuratie en test te scheiden
 - Vusers
 - duration
 
+zorg dat de imports kloppen met de mappenstructuur
+
 <i>env.js</i>
 ```javascript
 
@@ -21,8 +23,10 @@ export let TG1_VU=1
 export let TG1_ITERATION=1
 ```
 
-
+<i>Opdracht6.js</i>
 ```javascript
+import * as env from 'env.js'
+
 export let options = {
     vus : `${env.TG1_VU}`,
     duration: `${env.TG1_DURATION}`
@@ -31,6 +35,10 @@ export let options = {
 export default function() {
     const result = http.get(`${env.devEnvironment}`)
 }
+```
+
+```bash
+k6 run script opdracht6.js
 ```
 
 [Ga naar opdracht 7](https://danielvanbavel.github.io/k6-workshop-api-docs/step7)

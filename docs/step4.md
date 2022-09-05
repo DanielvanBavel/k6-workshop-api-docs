@@ -18,5 +18,8 @@ thresholds: {
 
 ```
 
+```bash
+k6 run script opdracht4.js
+```
 
 [Ga naar opdracht 5](https://danielvanbavel.github.io/k6-workshop-api-docs/step5)

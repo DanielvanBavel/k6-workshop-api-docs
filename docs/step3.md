@@ -13,4 +13,4 @@ export default function() {
 }
 ```
 
-[Ga naar opdracht 3:](https://danielvanbavel.github.io/k6-workshop-api-docs/step4)
+[Ga naar opdracht 3](https://danielvanbavel.github.io/k6-workshop-api-docs/step4)

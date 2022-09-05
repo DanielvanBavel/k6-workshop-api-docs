@@ -12,10 +12,9 @@ Alle benodigden informatie staat op een papier per tafel.
 Wanneer je hulp nodig hebt vraag om hulp bij iemand met een **codecentric shirt**. 
 
 ### Wat heb je nodig
-- K6 installed
-- GIT
+- K6
 - Your favorite IDE
 - Internet connection
 
 
-[Start workshop:](https://danielvanbavel.github.io/k6-workshop-api-docs/step2)
+[Start workshop](https://danielvanbavel.github.io/k6-workshop-api-docs/step2)

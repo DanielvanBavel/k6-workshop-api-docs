@@ -22,6 +22,8 @@ export default function() {
 }
 ```
 
+
+<b>Voer het script uit via de commandline</b>
 ```bash
 k6 run script opdracht5.js
 ```

@@ -17,6 +17,8 @@ thresholds: {
   },
 ```
 
+
+<b>Voer het script uit via de commandline</b>
 ```bash
 k6 run script opdracht4.js
 ```

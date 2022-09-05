@@ -32,7 +32,7 @@ jobs:
 
       - name: Install dependencies
         #run: yarn install --frozen-lockfile
-        run: yarn installl
+        run: yarn install
       - name: Build website
         run: yarn build
 

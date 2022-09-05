@@ -9,9 +9,9 @@ Implementeer nu een trend en voeg deze toe aan de thresholds.
 - Gebruik de add functie op de variable waarbij er een nieuwe trend instantie is aangemaakt.
 - Voer het script opnieuw uit.
 
+<b>Opdracht5.js</b>
 
 ```javascript
-
 import { Trend } from 'k6/metrics'
 
 const WaitingTrend = new Trend('waiting_time')

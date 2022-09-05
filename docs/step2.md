@@ -7,6 +7,8 @@ In opdracht 2 gaan we beginnen met het uitvoeren van een test op de Raspberry PI
 
 <i>Bekijk het grafana dashboard om te zien of er de data binnenkomt.<i>
 
+
+<b>Opdracht2.js</b>
 ```javascript
 import http from 'k6/http'
 

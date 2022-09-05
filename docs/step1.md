@@ -12,6 +12,7 @@ Mocht je nog niet gecheckt hebben of K6 goed geinstalleerd is? Voer dan deze opd
 - Maak een http call naar google
 - Run je script
 
+<b>Opdracht1.js</b>
 ```javascript
 import http from 'k6/http'
 

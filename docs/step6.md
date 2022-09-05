@@ -11,7 +11,7 @@ Voeg een <b>.env</b> file toe aan je project om configuratie en test te scheiden
 
 zorg dat de imports kloppen met de mappenstructuur
 
-<i>env.js</i>
+<b>env.js</b>
 ```javascript
 
 //Dev EnvironmentURI
@@ -23,7 +23,7 @@ export let TG1_VU=1
 export let TG1_ITERATION=1
 ```
 
-<i>Opdracht6.js</i>
+<b>Opdracht6.js</b>
 ```javascript
 import * as env from 'env.js'
 

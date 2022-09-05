@@ -18,7 +18,7 @@ export function getAll(endpoint) {
 }
 ```
 
-<b>opdracht 6.js</b>
+<b>opdracht6.js</b>
 ```javascript
 import * as apiService from '../services/apiService.js'
 

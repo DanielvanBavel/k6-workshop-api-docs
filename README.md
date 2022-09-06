@@ -1,1 +1,0 @@
-# k6-workshop-api-docs

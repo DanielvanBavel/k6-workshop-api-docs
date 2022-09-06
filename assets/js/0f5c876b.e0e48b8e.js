@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkk_6_workshop_api_docs=self.webpackChunkk_6_workshop_api_docs||[]).push([[515],{6270:o=>{o.exports=JSON.parse('{"permalink":"/k6-workshop-api-docs/blog/tags/hello","page":1,"postsPerPage":10,"totalPages":1,"totalCount":2,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);

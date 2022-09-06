@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkk_6_workshop_api_docs=self.webpackChunkk_6_workshop_api_docs||[]).push([[877],{9252:o=>{o.exports=JSON.parse('{"label":"hello","permalink":"/k6-workshop-api-docs/blog/tags/hello","allTagsPath":"/k6-workshop-api-docs/blog/tags","count":2}')}}]);

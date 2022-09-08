@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
-        <title>Full scale open source loadtesting for development teams with K6 Blog</title>
+        <title>Full scale open source load testing for development teams with K6 Blog</title>
         <link>https://codecentric.nl/k6-workshop-api-docs/blog</link>
-        <description>Full scale open source loadtesting for development teams with K6 Blog</description>
+        <description>Full scale open source load testing for development teams with K6 Blog</description>
         <lastBuildDate>Thu, 26 Aug 2021 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>

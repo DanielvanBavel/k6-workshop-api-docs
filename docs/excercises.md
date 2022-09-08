@@ -24,11 +24,11 @@ Zoals je wellicht is opgevallen worden de testresultaten van K6 gelogd in de ter
 [K6 report implementeren](https://github.com/benc-uk/k6-reporter)
 
 ## Opdracht 4
-Voer een drie keer een performancetest uit met 15 vusers en een duration van 2 minuten. Noteer na elke test het aantal http_requests, wat valt je op?
+Voer drie keer een performancetest uit met 15 vusers en een duration van 2 minuten. Noteer na elke test het aantal http_requests, wat valt je op?
 
-Als je de resultaten van de testuitvoer vergelijkt, valt je als het goed is op dat het aantal http_requests bij elke testrun verschillend is. Dit heeft te maken met de responsetijd van de Raspberry PI. Hoe sneller de Raspberry PI een response terug geeft, hoe meer http requests verwerkt kunnen worden. Helaas, is dit geen gewenst gedrag. Hierdoor kan je niet vaststellen wat de test doet en weet je dus niet precies met welke load de test wordt uitgevoerd.
+Als het goed is, is het opgevallen dat het aantal http_requests bij elke testrun verschillend is. Dit heeft te maken met de responsetijd van de Raspberry PI. Hoe sneller de Raspberry PI een response terug geeft, hoe meer http requests verwerkt kunnen worden. Dit is geen gewenst gedrag. Hierdoor kan je niet voorspellen wat je performancetest doet.
 
-Los dat probleem in deze opdracht op.
+Dit probleem gaan we in deze opdracht oplossen door "iteration" toe te voegen aan de options function.
 
 ## Opdracht 5
 Een performancetest heeft net zoals bij andere soorten testen validatie nodig. Het valideren van het test resultaat zorgt ervoor dat je zeker weet dat je bijvoorbeeld het juiste response terug krijgt. K6 heeft verschillende validaties beschikbaar, daarnaast is het ook mogelijk om je eigen validatie te maken. In deze opdracht gebruiken we alleen de standaard validatie technieken van K6.

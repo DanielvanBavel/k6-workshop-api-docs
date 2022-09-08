@@ -3,4 +3,6 @@ sidebar_position: 3
 ---
 
 # Usecases
-Hieronder staan vier verschillende usecases beschreven. Elke usecase wordt uitgevoerd op een andere Raspberry PI die elk zijn eigen probleem heeft. Per usecase staat ~25 minuten, hierna rouleren we door
+Klasse! Je hebt de opdrachten doorlopen en bent klaar om met de usecases te beginnen. Er zijn drie verschillende usecases. Elke usecase heeft ander scenario die een bepaald performance probleem bevat. Probeer dit probleem te achterhalen en daarop een performancetest te maken die dit probleem erkent.
+
+Per usecase staat ongeveer 30 minuten. Succes!

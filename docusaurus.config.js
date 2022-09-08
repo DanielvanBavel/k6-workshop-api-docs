@@ -6,7 +6,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Full scale open source loadtesting for development teams with K6',
+  title: 'Full scale open source load testing for development teams with K6',
   tagline: 'Performancetesten met K6',
   url: 'https://codecentric.nl',
   baseUrl: '/k6-workshop-api-docs/',

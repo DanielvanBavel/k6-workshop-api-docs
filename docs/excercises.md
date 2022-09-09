@@ -71,6 +71,6 @@ Wanneer de test steeds groter wordt krijg je meer te maken met variabelen. Het b
 Maak een configuratiebestand: <b>.env</b>. Voeg alle hardcoded variabelen toe aan het env bestand en implementeer het env bestand in de test via een import statement. Voer de test opnieuw uit. Als je de variabelen goed hebt geparametriseerd, functioneert de test zoals daarvoor.
 
 ## Opdracht 9
-Wanneer je bepaalde functionaliteiten herhaaldelijk moet uitvoeren, bijvoorbeeld wanneer je in 1 scriptrun een API moet aanspreken met verschillende parameters, is het handig om het script modulair op te bouwen met functions en die vervolgens te importeren in je hoofdscript.
+Wanneer je bepaalde functionaliteiten herhaaldelijk moet uitvoeren, bijvoorbeeld wanneer je in 1 scriptrun een API moet aanspreken met verschillende parameters, is het handig om het script modular op te bouwen met functions en die vervolgens te importeren in je hoofdscript.
 
 Bepaal welke onderdelen geschikt om los te trekken die je later kan aanroepen in je hoofdscript.

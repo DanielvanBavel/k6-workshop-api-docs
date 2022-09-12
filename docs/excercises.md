@@ -56,13 +56,13 @@ Implementeer 2 of meer verschillende thresholds in je test
 [Hulp nodig?](https://k6.io/docs/using-k6/thresholds)
 
 ## Opdracht 7 - trend
-Een trend is een object dat beschikbaar is in K6 en het mogelijk maakt om berekeningen te maken van requests zoals (min, max, gemiddelde of percentielen). 
+Een trend is een object dat beschikbaar is in K6 en het mogelijk maakt om berekeningen te maken van requests zoals (min, max, gemiddelde of percentielen).
 
-De waardes min en max geven zoals je al kan voorspellen de minimale en maximale waardes over de test. Hierbij is het goed om te kijken naar eventuele uitschieters. Welk request heeft ontzettende hoge responsetijden gehad? Dit zijn in veel gevallen aanknopingspunten om verder te onderzoeken. Maar, beter is het om gebruik te maken van percentielen. Deze kan je lezen als in 90 procent van de gevallen was de responstijd voor request A 0,124 seconden.
+De waardes min en max geven, zoals je al kan voorspellen, de minimale en maximale waardes over de test. Hierbij is het goed om te kijken naar eventuele uitschieters. Welk request heeft hoge responsetijden gehad? Dit kan een indicatie geven van een mogelijk incident. Maar, beter is het om gebruik te maken van percentielen. Het gebruiken van percentielen is beter omdat, de waardes representatiever zijn dan de uitschieters min en max. Percentielen kan je lezen als in 90 procent van de gevallen was de responstijd voor request A 0,124 seconden.
 
 Implementeer een trend in de test.
 
-[Hulp nodig?](https://k6.io/docs/javascript-aPi/k6-metrics/trend)
+[Hulp nodig?](https://k6.io/docs/javascript-api/k6-metrics/trend)
 
 ## Opdracht 8 - configuratie
 Wanneer het testscript com groter wordt krijg je meer te maken met variabelen. Om te zorgen dat het testscript onderhoudbaar blijft is het een goede gewoonte de variabele waarden te parametriseren. Daarom is het handig om een configuratiebestand te maken dat deze waardes bevat en ook gelijk op een plek staat.

@@ -10,9 +10,9 @@ We beginnen eenvoudig om te valideren of k6 goed werkt en alles goed is ingestel
 ### 1a) Test Google
 Maak lokaal een testscript aan, op je laptop, dat een http call doet naar https://www.google.nl.
 
-Om het script op een goede manier op te zetten, begin je met het importeren van de http library in de init-sectie. Daarna maak je een default function met daarin een http.get() naar Google. Het script hoeft alleen een init-sectie en een default-sectie te bevatten.
+Om het script op een goede manier op te zetten, begin je met het importeren van de http library in de init-sectie. Daarna maak je een default function en gebruik je de http.get() functionaliteit om een HTTP-request te doen. Het script hoeft alleen een init-sectie en een default-sectie te bevatten.
 
-Als je klaar bent met het script, voer het script uit via de command line (CLI). Het commando staat hieronder. 
+Als je klaar bent met het script, voer het script uit via de command line (CLI), zoals hieronder staat beschreven. 
 
 ```bash
 k6 run foo.js
@@ -28,7 +28,7 @@ k6 run foo.js
 
 
 ## Stap 2 - vusers & duration
-Virtuele gebruikers (in performancetestjargon vusers, spreek uit ‘v users’) worden in een performancetest gebruikt om gebruikersbelasting te simuleren. De gebruikersbelasting die wordt gesimuleerd door de vusers is bijvoorbeeld 100 keer inloggen in een minuut of het bevragen van een API-endpoint. In k6 wordt vusers aangegeven met de parameter ‘vus’.
+Virtuele gebruikers (in performancetestjargon vusers, spreek uit ‘v users’) worden in een performancetest gebruikt om gebruikersbelasting te simuleren. De gebruikersbelasting die wordt gesimuleerd door de vusers is bijvoorbeeld 100 keer inloggen in een minuut of het bevragen van een API-endpoint. In k6 worden vusers aangegeven met de parameter ‘vus’.
 
 Duration is bedoeld om de performancetest een bepaalde tijd te laten duren. Wanneer je geen duration meegeeft in de performancetest zal de test stoppen zodra alle requests zijn gedaan.
 
@@ -38,19 +38,20 @@ Beide parameters worden anders gedefinieerd. De parameter ‘vus’ is een integ
 
 
 ### 2a) CLI
-Verander het commando uit de vorige opdracht naar een commando waarbij de parameters vus en duration worden meegegeven in de CLI en herhaal de test.
+Verander het commando uit de vorige opdracht naar een commando waarbij de parameters 'vus' en 'duration' worden meegegeven in de CLI en herhaal de test.
 
 ```bash
 k6 run --vus [aantal vusers] --duration [tijdsduur] [scriptnaam].js
 ```
 
 ### 2b) options function
-Om als ontwikkelaar meer controle te hebben, is het wenselijk om de opties zoals vusers en duration te verwerken in het script in plaats van het CLI-commando. Wanneer het in het script is kan het onderdeel worden van versiebeheer.
+Om als ontwikkelaar meer controle te hebben, is het wenselijk om de opties zoals vusers en duration te verwerken in het script in plaats van het CLI-commando. Wanneer de parameters verwerkt worden in het script, kan het onderdeel worden van versiebeheer.
 
 In k6 is het verschil tussen duration in de CLI en in de options function, dat duration in de options function als string wordt geschreven.
 
-Verwerk nu in de options function vus en duration. De options function ziet er als volgt uit.
+Verwerk nu in de options function vus en duration. 
 
+De options function ziet er als volgt uit.
 ```javascript
 export const options = {
   vus: [AANTAL V-USERS],
@@ -59,7 +60,7 @@ export const options = {
 ```
 
 ### 2c) Stages
-Er bestaan verschillende soorten performancetest die verschillende doelen dienen, zoals een stresstest of een duurtest. In de meeste gevallen wil je de belasting (load) geleidelijk opbouwen om je systeem een opwarmtijd te geven en om een realistischer scenario te simuleren. Ook kun je de load weer netjes afschalen richting het einde van je test.
+Er bestaan verschillende soorten performancetest die verschillende doelen dienen, zoals een stresstest of een duurtest. In de meeste gevallen wil je de belasting (load) geleidelijk opbouwen om je systeem een opwarmtijd te geven en om een realistischer scenario te simuleren. Ook kun je de load weer netjes afschalen richting het einde van de test.
 
 ![vusers-over-time.png](vusers-over-time.png)
 
@@ -84,18 +85,16 @@ stages:
 ## Stap 3 - monitoring en rapportage
 
 ### 3a) monitoring
-Als je een performancetest bijwoont wil je vaak weten hoe de test verloopt.
+Als je een performancetest uitvoert wil je vaak weten hoe de test verloopt. Hievoor richt je monitoring in.
 
-Tijdens testrun zie je wat je test doet in de terminal, dit is de client-side. De client-side monitor je om het verloop van je test in de gaten te houden. Het geeft antwoord op de vraag ‘doet mijn performancetest wat ik bedoeld had’. 
+Tijdens een testrun zie je wat je test doet in de terminal, dit is de client-side. De client-side monitor je om het verloop van je test in de gaten te houden. Het geeft antwoord op de vraag ‘doet mijn performancetest wat ik bedoeld had’. 
 
 De server-side kun je monitoren via het Grafana-dashboard wat is [uitgelegd in de introductie](https://danielvanbavel.github.io/k6-workshop-api-docs/docs/intro). Server-side monitor je om te zien hoe het SUT (System Under Test) zich houdt tijdens de performancetest. Het geeft antwoord op de vraag ‘hoe houdt het testobject zich tijdens deze performancetest?’.
 
 Voer verschillende testruns uit waarbij je de waardes van het aantal vusers en de duration iedere testrun verandert. Blijf goed monitoren tijdens de test om te kijken wat er gebeurt.
 
-### 3b) report
-Monitoring gebruik je tijdens een test, een report is handig achteraf om te bepalen hoe de test verliep.
-
-Zoals je misschien is opgevallen, worden de testresultaten van k6 gelogd in de terminal. Dit is niet ideaal, omdat resultaten in de terminal niet opgeslagen worden. Daarom wil je dit het liefst in een testrapport opslaan, zodat je de resultaten later nog eens kunt terugkijken.
+### 3b) rapportage
+Een rapportage is handig om achteraf te kunnen bepalen hoe de test verliep. Zoals je misschien is opgevallen, worden de testresultaten van k6 gelogd in de terminal. Dit is niet ideaal, omdat resultaten in de terminal niet worden opgeslagen. Daarom wil je dit het liefst in een testrapport opslaan, zodat je de resultaten later nog eens kunt terugkijken.
 
 Standaard biedt k6 niet de mogelijkheid om na de test een report te maken. Echter, zijn er wel uitbreidingen beschikbaar. Deze uitbreiding gaan we toevoegen in het script.
 
@@ -109,15 +108,15 @@ Hieronder staan de resultaten van drie testruns van exact hetzelfde script.
 ![iteratie-vergelijking-2.png](iteratie-vergelijking-2.png)
 ![iteratie-vergelijking-3.png](iteratie-vergelijking-3.png)
 
-Zoals je kunt zien, is het totaal aantal http_requests bij elke testrun verschillend. Dit heeft te maken met de responstijd. Hoe sneller het testobject een response teruggeeft, hoe meer http requests verwerkt kunnen worden. Verschillende factoren, zoals verbindingssnelheid, kunnen ervoor zorgen dat de responstijden variëren gedurende een test. Hierdoor varieert de doorvoersnelheid (throughput) en dit resulteert performancetests die zijn uitgevoerd met verschillende load.
+Zoals je kunt zien, is het totaal aantal http_requests bij elke testrun verschillend. Dit heeft te maken met de responstijd. Hoe sneller het testobject een response teruggeeft, hoe meer http requests verwerkt kunnen worden. Verschillende factoren, zoals verbindingssnelheid, kunnen ervoor zorgen dat de responstijden variëren gedurende een test. Hierdoor varieert de doorvoersnelheid (throughput) en dit resulteert in dat performancetests zijn uitgevoerd met een verschillende hoeveelheid load.
 
-Maar zoals geschetst in de eerste zin, vaak voer je een performancetest uit om te verifiëren of je testobject een bepaalde load aankan. Je kan hierbij dus niet kunt vertrouwen op alleen duration omdat je geen controle hebt over het aantal requests dat er gedaan wordt.
+Maar zoals geschetst in de eerste zin, voer je vaak een performancetest uit om te verifiëren of je testobject een bepaalde load aankan. Je kan hierbij dus niet kunt vertrouwen op alleen duration omdat je geen controle hebt over het aantal requests dat er gedaan wordt.
 
 In k6 kan je het beoogde aantal requests instellen met de parameter ‘iterations’.
 
 Belangrijk om eerste te weten is dat in k6 de mogelijkheid bestaat om het totaal aantal iteraties te bepalen, de zogenaamde shared iterations. Daarentegen is het ook mogelijk om per vuser het aantal iteraties bepalen, dit heet Per VU iterations.
 
-Wanneer je op basis van het aantal iteraties je test opzet, is de parameter duration niet meer nodig, je wacht immers tot alle transacties zijn afgerond. Wel kun je een maxduration aangeven om in te stellen hoe lang de test uiterlijk mag duren.
+Wanneer je op basis van het aantal iteraties je test opzet, is de parameter duration niet meer nodig, je wacht immers tot alle transacties zijn afgerond. Wel kun je een maxduration instellen om aan te geven hoe lang de test maximaal mag duren.
 
 De iterations is onderdeel van een scenario in het options gedeelte.
 
@@ -138,7 +137,7 @@ export const options = {
 [hulp nodig?](https://k6.io/docs/using-k6/scenarios/executors/shared-iterations)
 
 ## Stap 5 - inhoudelijke validatie
-Een performancetest heeft, net zoals andere testen, validatie nodig. Je wil immers zeker weten dat je test daadwerkelijk doet wat je had bedoeld. Soms is een HTTP 200 response namelijk niet voldoende. Doe daarom ook geen aanname dat de test geslaagd is wanneer je tool OK teruggeeft. Een pagina waarop staat dat het inloggen niet is gelukt, bijvoorbeeld omdat het gebruikte wachtwoord onjuist was, geeft namelijk ook een HTTP 200 terug. Hierdoor krijgt de pagina na het inloggen geen load en is je test dus niet geslaagd.
+Een performancetest heeft, net zoals andere testen, validatie nodig. Je wilt immers zeker weten dat je test daadwerkelijk doet wat je had bedoeld. Soms is een HTTP 200 response namelijk niet voldoende. Doe daarom ook geen aanname dat de test geslaagd is wanneer je tool OK teruggeeft. Een pagina waarop staat dat het inloggen niet is gelukt, bijvoorbeeld omdat het gebruikte wachtwoord onjuist was, geeft namelijk ook een HTTP 200 terug. Hierdoor krijgt de pagina na het inloggen geen load en is je test dus niet geslaagd.
 
 In k6 kan je met checks een request in het script valideren, bijvoorbeeld: 
 - Geeft dit request een HTTP 200 status terug.
@@ -165,14 +164,14 @@ export default function() {
 ## Stap 6 - automatische testbeoordeling
 Na de uitvoer van een performancetest is de eerste vraag waarop je antwoord wil “heeft mijn performancetest gedaan wat ik beoogd had?”. 
 
-Dit kun je automatisch laten valideren door k6 door gebruik te maken van ‘thresholds’ (grenswaarden). Daarnaast zorgen thresholds ervoor dat performancetesten in een pipeline geautomatiseerd worden beoordeeld.
+Dit kun je automatisch laten valideren in k6 door gebruik te maken van ‘thresholds’ (grenswaarden). Daarnaast zorgen thresholds ervoor dat performancetesten in een pipeline geautomatiseerd worden beoordeeld.
 
 Goed om te weten is dat, wanneer je meerdere thresholds hebt ingesteld en er een FALSE genereert, de hele test wordt beoordeeld als gefaald.
 
 ![automatische-testbeoordeling.png](automatische-testbeoordeling.png)
 
 In k6 kan je met thresholds je testrun valideren. Voorbeelden hiervan zijn:
-- Of het aantal gefaalde http requests kleiner is dan 1%
+- Of het aantal gefaalde HTTP requests kleiner is dan 1%
 - Of in 90% van de gevallen het response kleiner is dan 300ms.
 
 De threshold functie kan als bron gebruik maken van de [ingebouwde metrieken](https://k6.io/docs/using-k6/metrics/#http-specific-built-in-metrics) of custom metrieken.
@@ -242,8 +241,8 @@ Wanneer je bepaalde functionaliteiten herhaaldelijk moet uitvoeren, bijvoorbeeld
 
 In k6 zijn er drie verschillende manieren voor het importeren van modules:
 - Ingebouwde modules, dit zijn de modules die verwerkt zitten in de core van k6 zoals de http module.
-- Lokale bestandssysteemmodules die jezelf hebt ontwikkeld.
-- Remote HTTP(S) modules, zoals de module die we geïmporteerd hebben voor het maken van het dashboard.
+- Lokale bestandssysteemmodules die jezelf hebt ontwikkeld, zoals de env.js.
+- Remote HTTP(S) modules, zoals de module die we geïmporteerd hebben voor het maken van het rapportage.
 
 Bepaal welke onderdelen geschikt zijn om los te trekken die je later kan aanroepen in je hoofdscript en verplaats deze naar een los script. Voer je hoofdscript uit om te kijken of het nog werkt.
 

@@ -82,6 +82,8 @@ stages:
 ],
 ```
 
+Standaard begint k6 bij het uitvoeren van de eerste stage met opbouwen vanaf 1, binnen de duration naar de target vusers. Wil je dit veranderen dan kan dat met de optie startVUs. [ramping vusers](https://k6.io/docs/using-k6/scenarios/executors/ramping-vus)
+
 ## Stap 3 - monitoring en rapportage
 
 ### 3a) monitoring

@@ -148,8 +148,9 @@ Een performancetest heeft, net zoals andere testen, validatie nodig. Je wilt imm
 
 In k6 kan je met checks een request in het script valideren, bijvoorbeeld: 
 - Geeft dit request een HTTP 200 status terug.
-- Geeft de response body een specifieke text terug.
-- Bevat de response body een bepaalde grootte.
+- Geeft de respons body een specifieke text terug.
+- Bevat de respons body een bepaalde grootte.4
+- Bevat de respons, na het parsen van de JSON een specifiek element.
 
 Om dit te doen moet je de respons afvangen in een constante. Deze constante verwerk je in de check-functie.
 
@@ -163,6 +164,8 @@ export default function() {
     check(response, {
         'is status 200': (r) => r.status === 200,
     });
+    // We use ===, so along with 200, it also checks for data type i..e number === number, string === string.
+    //expected and actual data type as well as value has to be the same
 }
 ```
 Goed om te weten:

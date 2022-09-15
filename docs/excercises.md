@@ -120,6 +120,11 @@ Belangrijk om eerste te weten is dat in k6 de mogelijkheid bestaat om het totaal
 
 Wanneer je op basis van het aantal iteraties je test opzet, is de parameter duration niet meer nodig, je wacht immers tot alle transacties zijn afgerond. Wel kun je een maxduration instellen om aan te geven hoe lang de test maximaal mag duren.
 
+Scenario’s is een uitgebreide feature van k6. Je kunt hier onder andere een setup bepalen voor meerdere API’s die je aanroept. Bv de ene met 10 vusers en de andere met 100. Als je dit doet zul je ook geen default function meer aanroepen maar de scenario’s apart. 
+[Meer weten?](https://k6.io/docs/using-k6/scenarios/advanced-examples)
+
+![advanced-scenario.png](advanced-scenario.png)
+
 De iterations is onderdeel van een scenario in het options gedeelte.
 
 Configureer jouw performancetest zo, dat de v-users allen 50x de RPi bevragen tijdens de test.
@@ -160,6 +165,12 @@ export default function() {
     });
 }
 ```
+Goed om te weten:
+Een check stopt de test niet, zoals een assert zou doen. Als je dat wel wil moet je checks combineren met thresholds
+![checks.png](checks.png)
+
+Over gefaalde checks
+![failing-checks.png](failing-checks.png)
 
 [Hulp nodig?](https://k6.io/docs/using-k6/checks)
 
@@ -168,7 +179,7 @@ Na de uitvoer van een performancetest is de eerste vraag waarop je antwoord wil 
 
 Dit kun je automatisch laten valideren in k6 door gebruik te maken van ‘thresholds’ (grenswaarden). Daarnaast zorgen thresholds ervoor dat performancetesten in een pipeline geautomatiseerd worden beoordeeld.
 
-Goed om te weten is dat, wanneer je meerdere thresholds hebt ingesteld en er een FALSE genereert, de hele test wordt beoordeeld als gefaald.
+Goed om te weten is dat, wanneer je meerdere thresholds hebt ingesteld en er een FALSE genereert, de hele test wordt beoordeeld als gefaald. Daarnaast kan je ook de output van een check gebruiken als input van een threshold.
 
 ![automatische-testbeoordeling.png](automatische-testbeoordeling.png)
 

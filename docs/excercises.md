@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 # Stappenplan
@@ -8,11 +8,12 @@ sidebar_position: 3
 We beginnen eenvoudig om te valideren of k6 goed werkt en alles goed is ingesteld. We gebruiken in de eerste test Google, omdat we hiervan zeker weten dat Google een response teruggeeft.
 
 ### 1a) Test Google
-Maak lokaal een testscript aan, op je laptop, dat een http call doet naar https://www.google.nl.
+Maak lokaal een testscript aan, op je laptop dat een http call, doet naar https://www.google.nl.
 
 Om het script op een goede manier op te zetten, begin je met het importeren van de http library in de init-sectie. Daarna maak je een default function en gebruik je de http.get() functionaliteit om een HTTP-request te doen. Het script hoeft alleen een init-sectie en een default-sectie te bevatten.
 
-Als je klaar bent met het script, voer het script uit via de command line (CLI), zoals hieronder staat beschreven. 
+Als je klaar bent met het script, voer het script uit via de command line (CLI), zoals hieronder staat beschreven.
+
 
 ```bash
 k6 run foo.js
@@ -20,7 +21,9 @@ k6 run foo.js
 [Hulp nodig?](https://danielvanbavel.github.io/k6-workshop-api-docs/docs/k6)
 
 ### 1b) Test RPi
-De tweede test is dezelfde test als de eerste test. Het enige verschil is dat de URL van Google wijzigt naar een URL van de Raspberry Pi (RPi). Gebruik hiervoor het IP-adres op het informatieblad bij de RPi met het demo endpoint. Voer het script nu nogmaals een keer uit met onderstaand commando.
+De tweede test is dezelfde test als de eerste test. Het enige verschil is dat de URL van Google wijzigt naar een URL van de Raspberry Pi (RPi). Gebruik hiervoor het IP-adres op het notitieblaadje bij de RPi met het demo endpoint. Voer het script nu nogmaals een keer uit met onderstaand commando.
+
+[hulp nodig?](https://danielvanbavel.github.io/k6-workshop-api-docs/docs/RPi)
 
 ```bash
 k6 run foo.js
@@ -36,7 +39,6 @@ Vusers en duration kunnen op twee manieren gebruikt worden in de test. Manier é
 
 Beide parameters worden anders gedefinieerd. De parameter ‘vus’ is een integer zoals 10, 20, 30. Duration wordt uitgedrukt in tijd, dus het aantal seconden, minuten of uren (10s, 8m, 1h).
 
-
 ### 2a) CLI
 Verander het commando uit de vorige opdracht naar een commando waarbij de parameters 'vus' en 'duration' worden meegegeven in de CLI en herhaal de test.
 
@@ -49,7 +51,7 @@ Om als ontwikkelaar meer controle te hebben, is het wenselijk om de opties zoals
 
 In k6 is het verschil tussen duration in de CLI en in de options function, dat duration in de options function als string wordt geschreven.
 
-Verwerk nu in de options function vus en duration. 
+Verwerk nu in de options function vus en duration.
 
 De options function ziet er als volgt uit.
 ```javascript
@@ -66,7 +68,11 @@ Er bestaan verschillende soorten performancetest die verschillende doelen dienen
 
 In k6 heet een fase met andere load een ‘stage’. Het totaal van alle stages wordt in performancetestjargon een loadmodel genoemd. Op de afbeelding hierboven staat een loadmodel afgebeeld met drie stages.
 
-Voeg drie stages toe aan je script met verschillende load en duration. Let op, aantal vusers wordt hier 'target' genoemd.
+Voeg drie stages toe aan je script met verschillende load en duration.
+
+De stages propery is onderdeel van options en moet dus hierin worden gedefinieerd.
+
+Let op: aantal vusers wordt hier 'target' genoemd.
 
 Doe bijvoorbeeld: 
 - opbouw 10s, 20 vus
@@ -81,8 +87,11 @@ stages:
   { duration: '[TESTDUUR]', target: [AANTAL V-USERS] },
 ],
 ```
+Let op: Wanneer je stages gebruikt moet je de losse elementen duration en vus verwijderen omdat dit anders conflicteert en zorgt dat k6 je test niet uitvoert.
 
 Standaard begint k6 bij het uitvoeren van de eerste stage met opbouwen vanaf 1, binnen de duration naar de target vusers. Wil je dit veranderen dan kan dat met de optie startVUs. [ramping vusers](https://k6.io/docs/using-k6/scenarios/executors/ramping-vus)
+
+[Hulp nodig?](https://k6.io/docs/getting-started/running-k6/#stages-ramping-up-down-vus)
 
 ## Stap 3 - monitoring en rapportage
 
@@ -120,7 +129,8 @@ Belangrijk om eerste te weten is dat in k6 de mogelijkheid bestaat om het totaal
 
 Wanneer je op basis van het aantal iteraties je test opzet, is de parameter duration niet meer nodig, je wacht immers tot alle transacties zijn afgerond. Wel kun je een maxduration instellen om aan te geven hoe lang de test maximaal mag duren.
 
-Scenario’s is een uitgebreide feature van k6. Je kunt hier onder andere een setup bepalen voor meerdere API’s die je aanroept. Bv de ene met 10 vusers en de andere met 100. Als je dit doet zul je ook geen default function meer aanroepen maar de scenario’s apart. 
+Een scenario is een uitgebreide feature van k6. Je kunt hier onder andere een setup bepalen voor meerdere API’s die je aanroept. B.v. de ene met 10 vusers en de andere met 100. Als je dit doet zul je ook geen default function meer aanroepen maar de scenario’s apart.
+
 [Meer weten?](https://k6.io/docs/using-k6/scenarios/advanced-examples)
 
 ![advanced-scenario.png](advanced-scenario.png)
@@ -144,23 +154,27 @@ export const options = {
 [hulp nodig?](https://k6.io/docs/using-k6/scenarios/executors/shared-iterations)
 
 ## Stap 5 - inhoudelijke validatie
-Een performancetest heeft, net zoals andere testen, validatie nodig. Je wilt immers zeker weten dat je test daadwerkelijk doet wat je had bedoeld. Soms is een HTTP 200 response namelijk niet voldoende. Doe daarom ook geen aanname dat de test geslaagd is wanneer je tool OK teruggeeft. Een pagina waarop staat dat het inloggen niet is gelukt, bijvoorbeeld omdat het gebruikte wachtwoord onjuist was, geeft namelijk ook een HTTP 200 terug. Hierdoor krijgt de pagina na het inloggen geen load en is je test dus niet geslaagd.
+Een performancetest heeft, net zoals andere testen, validatie nodig. Het is namelijk belangrijk om zeker te weten dat je test daadwerkelijk doet wat je had bedoeld. Soms is een HTTP 200 response namelijk niet voldoende. Doe daarom ook geen aanname dat de test geslaagd is wanneer je tool OK teruggeeft. Een pagina waarop staat dat het inloggen niet is gelukt, bijvoorbeeld omdat het gebruikte wachtwoord onjuist was, geeft namelijk ook een HTTP 200 terug. Hierdoor krijgt de pagina na het inloggen geen load en is je test dus niet geslaagd.
 
-In k6 kan je met checks een request in het script valideren, bijvoorbeeld: 
+In k6 kan je met checks een request in het script valideren, bijvoorbeeld:
 - Geeft dit request een HTTP 200 status terug.
-- Geeft de respons body een specifieke text terug.
-- Bevat de respons body een bepaalde grootte.4
+- Geeft de respons body een specifieke tekst terug.
+- Bevat de respons body een bepaalde grootte.
 - Bevat de respons, na het parsen van de JSON een specifiek element.
 
-Om dit te doen moet je de respons afvangen in een constante. Deze constante verwerk je in de check-functie.
+Om dit te doen moet je de respons afvangen in een constante. Deze constante verwerk je in de checkfunctie.
 
-Kies twee of drie verschillende validaties en verwerk deze in je test. Voer daarna de test een aantal keren opnieuw uit om te zien of de validaties werken.
+Kies twee of drie verschillende validaties en verwerk deze in je test. Voer daarna de test enkele keren opnieuw uit om te zien of de validaties werken.
+
+Let op: om de check-functionaliteit te kunnen gebruiken moet eerst de module worden geimporteerd met onderstaand statement.
+
 
 ```javascript
 import http from 'k6/http'
+import { check } from 'k6';
 
 export default function() {
-    const response = http.get(“http://www.google.nl”)
+    const response = http.get("http://www.google.nl")
     check(response, {
         'is status 200': (r) => r.status === 200,
     });
@@ -178,11 +192,11 @@ Over gefaalde checks
 [Hulp nodig?](https://k6.io/docs/using-k6/checks)
 
 ## Stap 6 - automatische testbeoordeling
-Na de uitvoer van een performancetest is de eerste vraag waarop je antwoord wil “heeft mijn performancetest gedaan wat ik beoogd had?”. 
+Na de uitvoer van een performancetest is de eerste vraag waarop je antwoord wil "heeft mijn performancetest gedaan wat ik beoogd had?".
 
 Dit kun je automatisch laten valideren in k6 door gebruik te maken van ‘thresholds’ (grenswaarden). Daarnaast zorgen thresholds ervoor dat performancetesten in een pipeline geautomatiseerd worden beoordeeld.
 
-Goed om te weten is dat, wanneer je meerdere thresholds hebt ingesteld en er een FALSE genereert, de hele test wordt beoordeeld als gefaald. Daarnaast kan je ook de output van een check gebruiken als input van een threshold.
+Goed om te weten is dat, wanneer je meerdere thresholds hebt ingesteld en er een FALSE genereert, de hele test wordt beoordeeld als gefaald. Daarnaast kun je ook de output van een check gebruiken als input van een threshold.
 
 ![automatische-testbeoordeling.png](automatische-testbeoordeling.png)
 
@@ -191,6 +205,7 @@ In k6 kan je met thresholds je testrun valideren. Voorbeelden hiervan zijn:
 - Of in 90% van de gevallen het response kleiner is dan 300ms.
 
 De threshold functie kan als bron gebruik maken van de [ingebouwde metrieken](https://k6.io/docs/using-k6/metrics/#http-specific-built-in-metrics) of custom metrieken.
+
 Implementeer twee of meer verschillende thresholds in je script. De thresholds dienen toegevoegd te worden in de options function. Maak voor het gemak gebruik van de [ingebouwde metrieken](https://k6.io/docs/using-k6/metrics/#http-specific-built-in-metrics).
 
 ```javascript
@@ -203,15 +218,14 @@ thresholds: {
 
 
 ## Stap 7 - variabelen en parametriseren
-Wanneer het testscript uitgebreider wordt, is het handig om variabelen te gebruiken. Om te zorgen dat het testscript onderhoudbaar blijft, is het een goede gewoonte de variabele waarden, zoals de string het endpoint, te parametriseren.
+Wanneer het testscript uitgebreider wordt, is het handig om variabelen te gebruiken. Om te zorgen dat het testscript onderhoudbaar blijft, is het een goede gewoonte de variabele waarden, zoals de string het endpoint, te parametriseren. Dit parametriseren kan op twee manieren. In deze stap gaan we beide gebruiken. We beginnen met het parametriseren van de variabelen via de CLI. 
+
+In k6 worden de omgevingsvariabelen weergegeven via een globale __ENV-variabele.
+
+### 7a) CLI
 
 ```javascript
-http.get('http://google.com'); 
-```
-Dit kun je vervangen door
-
-```javascript
-http.get(NAAM_VAN_DE_VARIABELE);
+http.get(`http://${__ENV.NAAM_VAN_DE_VARIABELE}/`);
 ```
 Deze variabelen kun je vullen vanaf de CLI door het meegeven van een argument aan je runcommando.
 
@@ -219,9 +233,10 @@ Deze variabelen kun je vullen vanaf de CLI door het meegeven van een argument aa
 k6 run -e NAAM_VAN_DE_VARIABELE=google.com script.js
 ```
 
-Daarnaast kun je de variabelen ook invullen door gebruik te maken van een extern configuratiebestand dat je dan importeert in je hoofdscript.
+[Hulp nodig?](https://k6.io/docs/using-k6/environment-variables)
 
-Dit configuratiebestand is ook een JavaScript file en geven we de naam env.js. In dit bestand exporteren we alle variabelen.
+### 7b) Configuratiebestand.
+Als tweede mogelijkheid kun je de variabelen ook invullen door gebruik te maken van een extern configuratiebestand dat je dan importeert in je hoofdscript. Dit configuratiebestand is een JavaScript bestand en geven we de naam env.js. In dit bestand exporteren we alle variabelen.
 
 Maak een env.js bestand aan in de hoofdmap van je project.
 
@@ -239,18 +254,15 @@ import * as env from './env.js'
 <b>Hoe was het eerst?</b>
 
 ```javascript
-http.get("http://10.0.0.75:8888/load");
+http.get("http://www.google.nl");
 ``` 
 <b>Hoe schrijf je het nu op?</b>
 
 ```javascript
-http.get(`${env.VARIABLENAAM}`);
+http.get(`${env.devEnvironment}`);
 ```
 
 Voer de test opnieuw uit. Als je de variabelen goed hebt geparametriseerd, functioneert de test zoals daarvoor.
-
-[Hulp nodig?](https://k6.io/docs/using-k6/environment-variables)
-
 
 ## Stap 8 - modules
 Wanneer je bepaalde functionaliteiten herhaaldelijk moet uitvoeren, bijvoorbeeld wanneer je in een scriptrun een API moet aanspreken met verschillende parameters, is het handig om het script modulair op te bouwen met functions en die vervolgens te importeren in je hoofdscript.
